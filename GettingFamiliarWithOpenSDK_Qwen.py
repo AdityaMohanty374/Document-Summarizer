@@ -1,11 +1,5 @@
 import os 
 from openai import OpenAI
-import fitz
-
-pdf_path = r"C:\Users\mohan\OneDrive - vit.ac.in\Documents\ML\testExtractFile.pdf"
-
-with fitz.open(pdf_path) as doc:
-    text = "\f".join(page.get_text() for page in doc)
 
 full_responses=""
 
@@ -22,7 +16,7 @@ stream = client.chat.completions.create(
         },
         {
             "role":"user",
-            "content": text
+            "content": "Explain neural networks in 200 words
         }
     ],
     stream=True,
