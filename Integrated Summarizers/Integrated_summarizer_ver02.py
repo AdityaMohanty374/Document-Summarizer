@@ -19,9 +19,13 @@ while True:
     if user=="~":
         file_path=input("Paste the pdf path here: ")
         file_path=file_path.strip('"') #to remove quotes
-        with fitz.open(file_path) as doc:
-            print(f"Pages: {len(doc)")
-            text = "\f".join(page.get_text() for page in doc)
+        try:
+            with fitz.open(file_path) as doc:
+                print(f"Pages: {len(doc)}")
+                text = "\f".join(page.get_text() for page in doc)
+        except Exception as e:
+            print(f"Error: {e}")
+            continue
         messages.append({
             "role":"user",
             "content":"Summarize: "+text
