@@ -16,7 +16,7 @@ system_prompt={
 }
 file_path=""
 text=""
-print("Welcome to qwen, to summarize a document press \"~\"")
+print("Welcome to qwen, to summarize a document enter \"~\", \"clear\" to clear chat, \"exit\" to end chat")
 while True:
     user=input(">>")
     if user=="~":
