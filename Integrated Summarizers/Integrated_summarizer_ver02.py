@@ -44,6 +44,6 @@ while True:
             print(token, end="", flush = True)
     print()
     messages.append({
-        "role":"user",
+        "role":"assistant",
         "content":ans
     })
