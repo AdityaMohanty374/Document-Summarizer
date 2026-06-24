@@ -19,6 +19,7 @@ while True:
         file_path=input("Paste the pdf path here: ")
         file_path=file_path[1:-1] #to remove quotes
         with fitz.open(file_path) as doc:
+            print(f"Pages: {len(doc)")
             text = "\f".join(page.get_text() for page in doc)
         messages.append({
             "role":"user",
