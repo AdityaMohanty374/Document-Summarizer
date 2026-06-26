@@ -22,6 +22,14 @@ messages = [prompts.SYSTEM_PROMPT]
 class ChatRequest(BaseModel):
     message: str
 
+def generate_response(messages):
+
+    answer = ""
+
+    for token in stream_response(messages):
+        answer += token
+
+    return answer
 
 @app.get("/")
 def home():
@@ -36,10 +44,7 @@ def chat_endpoint(request: ChatRequest):
 
     chat(messages, request.message)
 
-    answer = ""
-
-    for token in stream_response(messages):
-        answer += token
+    answer = generate_response(messages=messages)
 
     messages.append({
         "role": "assistant",
@@ -77,10 +82,7 @@ async def upload_pdf(file: UploadFile = File(...)):
             summarize_text(text)
         )
 
-        answer = ""
-
-        for token in stream_response(messages):
-            answer += token
+        answer = generate_response(messages=messages)
 
         messages.append({
             "role": "assistant",
